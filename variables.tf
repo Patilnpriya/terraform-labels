@@ -13,7 +13,7 @@ variable "app_name" {
 }
 variable "platform" {
   type        = string
-  default     = "Simplify"
+  default     = ""
   description = "e.g.Simplify."
 }
 variable "squadname" {
@@ -34,7 +34,7 @@ variable "label_order" {
 
 variable "attributes" {
   type        = list
-  default     = [1]
+  default     = []
   description = "Additional attributes (e.g. `1`)."
 }
 variable "tags" {
@@ -44,7 +44,7 @@ variable "tags" {
 }
 variable "managedby" {
   type        = string
-  default     = "Terraform"
+  default     = ""
   description = "ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'."
 }
 variable "enabled" {
