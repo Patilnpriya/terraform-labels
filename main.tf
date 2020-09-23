@@ -6,24 +6,24 @@
 locals {
   enabled = var.enabled == true ? true : false
   id_context = {
-    Application_id        = var.app_id
-    Application_name      = var.app_name
-    Platform_name         = var.platform
-    OWNER                 = var.squadname
-    Environment           = var.env
-    Managed_by            = var.managedby
+    application_id        = var.app_id
+    application_name      = var.app_name
+    platform_name         = var.platform
+    owner                 = var.squadname
+    environment           = var.env
+    managed_by            = var.managedby
   }
 
   # run loop for label order and set in value.
   id_labels = [for l in var.label_order : local.id_context[l] if length(local.id_context[l]) > 0]
 
   id                        = lower(join(var.delimiter, local.id_labels, var.attributes))
-  Application_id            = local.enabled == true ? lower(format("%v", var.app_id)) : ""
-  Application_name          = local.enabled == true ? lower(format("%v", var.app_name)) : ""
-  Platform_name             = local.enabled == true ? lower(format("%v", var.platform)) : ""
-  OWNER                     = local.enabled == true ? lower(format("%v", var.squadname)) : ""
-  Environment               = local.enabled == true ? lower(format("%v", var.env)) : ""
-  Managed_by                = local.enabled == true ? lower(format("%v", var.managedby)) : ""
+  application_id            = local.enabled == true ? lower(format("%v", var.app_id)) : ""
+  application_name          = local.enabled == true ? lower(format("%v", var.app_name)) : ""
+  platform_name             = local.enabled == true ? lower(format("%v", var.platform)) : ""
+  owner                     = local.enabled == true ? lower(format("%v", var.squadname)) : ""
+  environment               = local.enabled == true ? lower(format("%v", var.env)) : ""
+  managed_by                = local.enabled == true ? lower(format("%v", var.managedby)) : ""
   attributes  = local.enabled == true ? lower(format("%v", join(var.delimiter, compact(var.attributes)))) : ""
 
   # Merge input tags with our tags.
@@ -31,12 +31,12 @@ locals {
   tags = merge(
     {
      "Name"                     = local.id
-      "Application_ID"           = local.Application_id
-      "Application_Name"         = local.Application_name
-      "Environment_Type"         = local.Environment
-      "Platform"                 = local.Platform_name
-      "Owner"                    = local.OWNER
-      "ManagedBy"                = local.Managed_by
+      "Application_ID"           = local.application_id
+      "Application_Name"         = local.application_name
+      "Environment_Type"         = local.environment
+      "Platform"                 = local.platform_name
+      "Owner"                    = local.owner
+      "ManagedBy"                = local.managed_by
     },
     var.tags
   )
