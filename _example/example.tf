@@ -1,8 +1,11 @@
 module "labels" {
-  source = "git::https://github.com/clouddrove/terraform-labels.git"
+  source = "https://github.com/Patilnpriya/terraform-labels"
 
-  name        = "labels"
-  application = "clouddrove"
-  environment = "test"
-  label_order = ["name", "application", "environment"]
+  Application_id        = var.app_id
+  Application_name      = var.app_name
+  Platform_name         = var.platform
+  OWNER                 = var.squadname
+  Environment           = var.env
+  Managed_by            = var.managedby
+  label_order = ["Application_id", "Application_name","Platform_name","OWNER","Environment","Managed_by"]
 }
