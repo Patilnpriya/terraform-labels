@@ -1,23 +1,31 @@
 #Module      : LABEL
 #Description : Terraform label module variables.
-variable "name" {
+variable "app_id" {
   type        = string
   default     = ""
-  description = "Name  (e.g. `app` or `cluster`)."
+  description = "ID  (e.g. `12345`)."
 }
 
-variable "application" {
+variable "app_name" {
   type        = string
   default     = ""
-  description = "Application (e.g. `cd` or `clouddrove`)."
+  description = "Application Name (e.g. `CCTA` or `Kano`)."
 }
-
+variable "platform" {
+  type        = string
+  default     = "Simplify"
+  description = "e.g.Simplify."
+}
+variable "squadname" {
+  type        = string
+  default     = ""
+  description = "Squad Name (e.g. `DevOps`)."
+}
 variable "environment" {
   type        = string
   default     = ""
   description = "Environment (e.g. `prod`, `dev`, `staging`)."
 }
-
 variable "label_order" {
   type        = list
   default     = []
@@ -26,36 +34,26 @@ variable "label_order" {
 
 variable "attributes" {
   type        = list
-  default     = []
+  default     = [1]
   description = "Additional attributes (e.g. `1`)."
 }
-
 variable "tags" {
   type        = map(string)
   default     = {}
   description = "Additional tags (e.g. map(`BusinessUnit`,`XYZ`)."
 }
-
-variable "createdby" {
-  type        = string
-  default     = "terraform"
-  description = "CreatedBy, eg 'terraform'."
-}
-
 variable "managedby" {
   type        = string
-  default     = "anmol@clouddrove.com"
+  default     = "Terraform"
   description = "ManagedBy, eg 'CloudDrove' or 'AnmolNagpal'."
 }
-
 variable "enabled" {
   type        = bool
   description = "Set to false to prevent the module from creating any resources."
   default     = true
 }
-
 variable "delimiter" {
   type        = string
-  default     = "-"
+  default     = "_"
   description = "Delimiter to be used between `organization`, `name`, `environment` and `attributes`."
 }
